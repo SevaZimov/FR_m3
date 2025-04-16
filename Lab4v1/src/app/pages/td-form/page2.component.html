@@ -1,0 +1,38 @@
+<div class="form-container">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+      <div class="form-group">
+        <label>Имя:</label>
+        <input [(ngModel)]="model.name" name="name" required minlength="2" #name="ngModel">
+        <div *ngIf="name.invalid && name.touched" class="error">
+          Имя обязательно (мин. 2 символа)
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Возраст:</label>
+        <input type="number" [(ngModel)]="model.age" name="age" required min="1" max="120" #age="ngModel">
+        <div *ngIf="age.invalid && age.touched" class="error">
+          Возраст должен быть от 1 до 120
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Телефон:</label>
+        <input [(ngModel)]="model.phone" name="phone" required pattern="\+?\d{10,15}" #phone="ngModel">
+        <div *ngIf="phone.invalid && phone.touched" class="error">
+          Введите корректный номер (10-15 цифр)
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="userForm.invalid">Сохранить</button>
+    </form>
+  
+    <div class="user-list">
+      <h3>Добавленные пользователи:</h3>
+      <ul>
+        <li *ngFor="let user of users">
+          {{user.name}}, {{user.age}} лет, тел.: {{user.phone}}
+        </li>
+      </ul>
+    </div>
+  </div>
