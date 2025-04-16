@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Приветствие пользователя</h2>
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" [(ngModel)]="userName" placeholder="Введите ваше имя">
+    <button class="btn btn-primary" (click)="showGreetingMessage()">
+      Показать приветствие
+    </button>
+  </div>
+
+  <div *ngIf="showGreeting" class="alert alert-success">
+    {{ greeting }}
+  </div>
+
+  <div class="mt-4">
+    <h4>Жизненный цикл:</h4>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let message of logMessages">
+        {{ message }}
+      </li>
+    </ul>
+  </div>
+</div>
