@@ -1,0 +1,20 @@
+<div>
+    <h2>Продукты</h2>
+    <div>
+      <label>Отсортированные:</label>
+      <select [(ngModel)]="sortField">
+        <option value="name">Название</option>
+        <option value="price">Цена</option>
+      </select>
+      
+      <button (click)="sortDirection = sortDirection === 'asc' ? 'desc' : 'asc'">
+        {{ sortDirection === 'asc' ? '↑' : '↓' }}
+      </button>
+    </div>
+    
+    <ul>
+      <li *ngFor="let product of products | sort:sortField:sortDirection">
+        {{ product.name }} - ${{ product.price }}
+      </li>
+    </ul>
+  </div>
