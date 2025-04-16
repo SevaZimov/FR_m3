@@ -1,0 +1,42 @@
+{
+  "cars": [
+    {
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2022,
+      "price": 25000,
+      "isElectric": false,
+      "features": ["Bluetooth", "Backup camera", "Lane assist"],
+      "engine": {
+        "type": "V6",
+        "horsepower": 301,
+        "turbocharged": true
+      }
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model 3",
+      "year": 2023,
+      "price": 40000,
+      "isElectric": true,
+      "features": ["Autopilot", "Touchscreen", "Over-the-air updates"],
+      "battery": {
+        "capacity": 82,
+        "range": 358
+      }
+    },
+    {
+      "brand": "Ford",
+      "model": "Mustang",
+      "year": 2021,
+      "price": 32000,
+      "isElectric": false,
+      "features": ["Leather seats", "Premium sound", "Sport mode"],
+      "engine": {
+        "type": "V8",
+        "horsepower": 450,
+        "turbocharged": false
+      }
+    }
+  ]
+}
