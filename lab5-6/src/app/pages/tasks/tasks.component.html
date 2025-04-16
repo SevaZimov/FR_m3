@@ -1,0 +1,82 @@
+<div class="task-tracker">
+    <h2>Таск-трекер</h2>
+  
+    <button (click)="showForm = !showForm">
+      {{ showForm ? 'Скрыть форму' : 'Добавить задачу' }}
+    </button>
+  
+    <form *ngIf="showForm" [formGroup]="taskForm" (ngSubmit)="addTask()" class="task-form">
+      <div class="form-group">
+        <label>Тип*:</label>
+        <select formControlName="type">
+          <option value="task">Задача</option>
+          <option value="bug">Ошибка</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label>Приоритет:</label>
+        <select formControlName="priority">
+          <option value="">Не выбран</option>
+          <option value="critical">Критический</option>
+          <option value="high">Высокий</option>
+          <option value="medium">Средний</option>
+          <option value="low">Низкий</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label>Заголовок*:</label>
+        <input type="text" formControlName="title">
+      </div>
+  
+      <div class="form-group">
+        <label>Описание:</label>
+        <textarea formControlName="description"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label>Исполнитель:</label>
+        <input type="text" formControlName="assignee">
+      </div>
+  
+      <div class="form-group">
+        <label>Создатель*:</label>
+        <input type="text" formControlName="creator">
+      </div>
+  
+      <div class="form-group">
+        <label>Статус*:</label>
+        <select formControlName="status">
+          <option value="to-do">К выполнению</option>
+          <option value="in-progress">В работе</option>
+          <option value="done">Выполнено</option>
+        </select>
+      </div>
+  
+      <button type="submit" [disabled]="taskForm.invalid">Добавить задачу</button>
+    </form>
+  
+    <div class="task-list">
+      <div *ngFor="let task of tasks" class="task-card" [class]="'priority-' + (task.priority || 'none')">
+        <div class="task-header">
+          <span class="task-id">#{{task.id}}</span>
+          <span class="task-type">{{task.type === 'bug' ? 'Ошибка' : 'Задача'}}</span>
+          <span class="task-priority" *ngIf="task.priority">
+            {{getPriorityLabel(task.priority)}}
+          </span>
+          <span class="task-status" (click)="toggleStatus(task)">
+            {{getStatusLabel(task.status)}}
+          </span>
+        </div>
+        <h3 class="task-title">{{task.title}}</h3>
+        <p class="task-description" *ngIf="task.description">{{task.description}}</p>
+        <div class="task-footer">
+          <span *ngIf="task.assignee">Исполнитель: {{task.assignee}}</span>
+          <span>Создатель: {{task.creator}}</span>
+          <span>Создана: {{task.createdAt | date:'dd.MM.yyyy HH:mm'}}</span>
+          <span>Изменена: {{task.updatedAt | date:'dd.MM.yyyy HH:mm'}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
